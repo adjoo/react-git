@@ -1,0 +1,18 @@
+.nav {
+    grid-area: n;
+    background-color: #f8f9fa;
+    padding: 1em;
+    max-height: 10em;
+}
+
+.item {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.activeLink{
+    color: darkred;
+}
+

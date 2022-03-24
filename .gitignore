@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/desktop.ini
+/lesson 35 RerenderEntireTree() .png
+/lesson 36 RerenderEntireTree() .png
+/lesson 38 dispatch(action) .png
+/lessons.pptx

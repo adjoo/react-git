@@ -1,22 +1,19 @@
 import React from 'react'
+import style from './Profile.module.css'
+import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
-    return             <div className='content'>
-        <div className='content_wallpaper'>
-            <img src="https://images.ru.prom.st/789689695_w640_h640_kirpich-ruchnoj-formovki.jpg" alt=""/>
-        </div>
-        <div className="content_header">
-            ava + description
-        </div>
-        <div><h2>My posts</h2>
-            <div>post #1</div>
-            <div>post #2</div>
-            <div>post #3</div>
-            <div>post #4</div>
+const Profile = (props) => {
+    return (
+        <div className={style.root}>
+            <ProfileInfo/>
+            <MyPosts posts={props.postsPage.postsData}
+                     newPostText={props.postsPage.newPostText}
+                     dispatch={props.dispatch}
+            />
 
         </div>
-
-    </div>
+    )
 }
 
 

@@ -1,0 +1,15 @@
+.item{
+    padding: 1rem;
+    margin: 1rem 0;
+    max-width: 60ch;
+    box-shadow:  0 0 1rem -.5rem inset;
+    border: 1px solid #bfbfbf;
+    border-radius: 1rem;
+    background-color: #fafafa
+}
+.item strong{
+    font-size: 1.2em;
+}
+.item p{
+    margin: .5rem 0;
+}

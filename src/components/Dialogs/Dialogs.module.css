@@ -1,0 +1,68 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 4em 1fr;
+    grid-template-rows: 1fr auto;
+    grid-gap: 1em;
+}
+
+.dialogsItems {
+
+}
+
+.dialogItem {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    font-weight: 600;
+    color: #30393e;
+}
+
+.dialogActiveItem {
+    color: darkred;
+    text-shadow: 0 0 1px currentColor;
+}
+
+.dialogMessagesWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1em;
+    box-shadow: 0 0 1.5rem -1rem black inset, 0 0 1.5rem -1rem black;
+    border-radius: 1rem;
+    border: 1px solid #cdcdcd
+}
+
+.dialogMessage {
+    background-color: #cdcdcd;
+    border-radius: 1rem;
+    display: inline-block;
+    padding: .2em 1.5em;
+    margin: .25em 0em;
+    box-shadow: .1em .1em .5em -.3em black;
+    border: 1px solid #cdcdcd;
+    max-width: 20ch;
+    max-height: 5em;
+}
+
+.dialogMessage:nth-child(odd) {
+    align-self: flex-end;
+    box-shadow: -0.1em 0.1em 0.5em -0.3em darkred;
+}
+
+.textdiareaWr{
+    margin: 1rem 0 1rem ;
+}
+
+.textdiareaWr textarea{
+    display: block;
+    margin-left: auto;
+
+}
+
+.textdiareaWr button{
+    display: block;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+}

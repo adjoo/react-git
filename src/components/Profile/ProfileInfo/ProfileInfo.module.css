@@ -1,0 +1,9 @@
+.profile__wallpaper{
+    height: 5em;
+}
+.profile__wallpaper img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+

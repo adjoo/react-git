@@ -1,0 +1,32 @@
+.item {
+    font-weight: 500;
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    grid-gap: 1em;
+    box-shadow:  0 0 1em -.5em black;
+    border-radius: 1em;
+    padding: 1em;
+}
+.item + .item{
+    margin-top: 1em;
+}
+.item__picture{
+}
+.item__picture img{
+    width: 3em;
+    height: 3em;
+    object-fit: cover;
+    border-radius: 1em;
+}
+.item__content{
+}
+
+.item__content p{
+    margin: 0;
+}
+.item__content span{
+    display: inline-block;
+    margin-top: 1em;
+    color: #30393e;
+    float: right;
+}
