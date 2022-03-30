@@ -1,0 +1,45 @@
+.userItem {
+    max-width: 80ch;
+    min-height: 5em;
+    display: flex;
+    box-shadow: 0 .1rem 1rem -.5rem black;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+.userItem > div {
+    padding: .5rem;
+  }
+
+.userItem_avatar {
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: .5rem;
+}
+
+.userItem_followBtn {
+    width: 100%;
+    margin-block: .5rem;
+}
+.userItem_main {
+    flex-grow: 1;
+}
+.pagination {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+} span {
+    margin-inline: .2rem;
+    width: 3ch;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    padding: .1rem;
+    outline: 1px solid #30393e
+  }
+.active {
+    font-weight: bold;
+    cursor: default;
+    pointer-events: none;
+}

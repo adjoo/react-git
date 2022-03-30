@@ -1,14 +1,20 @@
 import React from 'react'
 import style from './ProfileInfo.module.css'
+import Preloader from "../../common/Preloader";
 
 const ProfileInfo = (props) => {
+    if (!props.profile) {
+        return <Preloader/>
+    }
+
     return (
         <div>
             <div className={style.profile__wallpaper}>
-                <img src="https://images.ru.prom.st/789689695_w640_h640_kirpich-ruchnoj-formovki.jpg" alt=""/>
+                <img src={props.profile.photos.large} alt="alt"/>
             </div>
         </div>
     )
+
 }
 
 
