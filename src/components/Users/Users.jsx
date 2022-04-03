@@ -4,7 +4,6 @@ import userPhoto from '../../Assets/Images/user.png';
 import {NavLink} from "react-router-dom";
 
 
-
 let Users = (props) => {
 
     let pagesCount = props.totalUsersCount / props.pageSize
@@ -14,6 +13,7 @@ let Users = (props) => {
     for (let i = 1; i < pagesCount + 1; i++) {
         pages.push(i)
     }
+
 
     return (
         <div>
@@ -25,33 +25,38 @@ let Users = (props) => {
                                  }}>{i}</span>
                 })}
             </div>
-            {props.users.map(u => <div key={u.id} className={style.userItem}>
-                <div>
+            {props.users.map(u =>
+                <div key={u.id} className={style.userItem}>
+                    <div>
 
-                    <div>
-                        <NavLink to={`/profile/${u.id}`}>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto}
-                              className={style.userItem_avatar}/>
-                        </NavLink>
+                        <div>
+                            <NavLink to={`/profile/${u.id}`}>
+                                <img src={u.photos.small != null ? u.photos.small : userPhoto}
+                                     className={style.userItem_avatar}/>
+                            </NavLink>
+                        </div>
+                        <div>
+                            <button disabled={props.followingInProgress.some(id => id==u.id) ?  "disabled" : null}
+                                    className={style.userItem_followBtn}
+                                    onClick={()=>{props.toggleUserFollowing(u.id,u.followed)}}
+                                >{u.followed ? "Unfollow" : "follow"}
+                            </button>
+
+                         </div>
+                    </div>
+                    <div className={style.userItem_main}>
+                                <div>{u.name}</div>
+                                <div>{u.status}</div>
                     </div>
                     <div>
-                        <button className={style.userItem_followBtn} onClick={() => {
-                            props.toggleFollow(u.id)
-                        }}>
-                            {u.followed ? 'UnFollow' : 'Follow'}
-                        </button>
+                                <div>{'u.location.city'}</div>
+                                <div>{'u.location.country'}</div>
                     </div>
                 </div>
-                <div className={style.userItem_main}>
-                    <div>{u.name}</div>
-                    <div>{u.status}</div>
-                </div>
-                <div>
-                    <div>{'u.location.city'}</div>
-                    <div>{'u.location.country'}</div>
-                </div>
-            </div>)}
-        </div>)
+                )
+            }
+        </div>
+    )
 }
 
 export default Users;
