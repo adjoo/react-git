@@ -1,34 +1,21 @@
 import React from 'react'
 import style from './MyPosts.module.css'
 import Post from "./Post/Post";
+import NewPostFormRedux from "./NewPostForm";
 
 const MyPosts = (props) => {
 
     let postsElements = props.posts.map(el => (<Post message={el.message} likesCount={el.likesCount}/>))
-    let newPostElement = React.createRef();
-    let newPostText = props.newPostText;
 
-
-    let onAddPost = ()=> {
-        props.addPost();
-    }
-
-    let onPostChange = () => {
-        let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+    let onAddPost = (values)=> {
+       props.addPost(values.newPostText);
     }
 
     return <div>
         <h5 className={style.title}>My Posts</h5>
 
         <div className={style.area}>
-            <div>
-                <textarea ref={newPostElement} onChange={onPostChange} value={newPostText}></textarea>
-            </div>
-            <div>
-                <button onClick={onAddPost}>Add post</button>
-            </div>
-
+            <NewPostFormRedux onSubmit={onAddPost} new/>
         </div>
 
         {postsElements}

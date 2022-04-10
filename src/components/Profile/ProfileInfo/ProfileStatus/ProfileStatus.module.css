@@ -1,0 +1,11 @@
+.profileStatus {
+    margin-block: .5rem;
+}
+.profileStatus>* {
+    font-size: 1rem;
+    padding: .2rem .5rem;
+    display: block;
+    line-height: 1.2;
+    margin-block: .5rem;
+    border: none
+}

@@ -2,21 +2,11 @@ import React from 'react'
 import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
+import SendMessageForm from "./SendMessageForm";
 
 
 const Dialogs = (props) => {
 
-
-    let newMessageText = React.createRef()
-    let newPostText = props.newMessageText
-
-    let onSendMessage = () => {
-        props.sendMessage()
-    };
-    let onMessageTextChange = () => {
-        let text = newMessageText.current.value;
-        props.messageTextChange(text)
-    };
 
     let dialogs = props.dialogs.map((el) => {
         return <DialogItem name={el.name} path={`dialogs/${el.id}`}/>
@@ -25,18 +15,17 @@ const Dialogs = (props) => {
         return <Message message={el.message}/>
     })
 
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageBody)
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>{dialogs}</div>
             <div className={s.dialogMessagesWrapper}>{messages}
 
             </div>
-
-            <div className={s.textdiareaWr}>
-                <textarea ref={newMessageText} onChange={onMessageTextChange} value={newPostText}></textarea>
-                <button onClick={onSendMessage}>send</button>
-            </div>
-
+            <SendMessageForm onSubmit={addNewMessage} />
         </div>
     )
 }

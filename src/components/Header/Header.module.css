@@ -24,3 +24,6 @@
     display: block;
     padding: .5em;
   }
+.userName {
+    margin-right: 1rem;
+}
