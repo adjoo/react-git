@@ -30,7 +30,7 @@ let Paginator = ({currentPage, totalItemsCount, pageSize, pageChanged}) => {
     return <div className={style.pagination}>
             <button className={style.paginatorButton}
                     onClick={onPrevButtonClick}
-                    disabled={ portionNumberStart == 1 ? 'disabled' : null}>PREV</button>
+                    disabled={ portionNumberStart === 1 ? 'disabled' : null}>PREV</button>
             {pages.map((i) => {
                     return <span className={currentPage === i && style.active}
                                  onClick={() => {pageChanged(i)}}>{i}</span>
