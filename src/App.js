@@ -14,7 +14,7 @@ import {withRouter} from "react-router-dom";
 import {initializeApp} from "./redux/app-reducer";
 import Preloader from "./components/common/Preloader";
 import store from "./redux/redux-store";
-import ReactDOM from "react-dom";
+
 
 class App extends React.Component {
     componentDidMount() {
