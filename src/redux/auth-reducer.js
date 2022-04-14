@@ -35,45 +35,33 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-const setAuthUserData = (userId, email , login) => ({type: SET_USER_DATA, data: {userId, email , login}});
+const setAuthUserData = (userId, email, login) => ({type: SET_USER_DATA, data: {userId, email, login}});
 const deleteAuthUserData = () => ({type: DELETE_USER_DATA});
 
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        return authAPI.getMe()
-            .then(response => {
-                if (response.data.resultCode) {throw new Error('you are not authorized')}
-                dispatch(setAuthUserData(response.data.data.id, response.data.data.email, response.data.data.login))
-                getProfile(response.data.data.id);
-            })
-            .catch((e) => {console.log(e)})
+export const getAuthUserData = () => async (dispatch) => {
+    let response = await authAPI.getMe()
+    if (!response.data.resultCode) {
+        let {id, login, email} = response.data.data
+        dispatch(setAuthUserData(id, email, login))
     }
 }
-export const login = (formData) => {
-    return (dispatch) => {
-        authAPI.logIn(formData.email, formData.password, formData.rememberMe)
-            .then(response => {
-                if(!response.data.resultCode){
-                    dispatch(getAuthUserData())
-                } else {
-                    let message = (response.data.messages.length > 0) ? response.data.messages[0] : 'Common error';
-                    dispatch(stopSubmit('loginForm',{_error: message}));
-                }
+export const login = (formData) => async (dispatch) => {
+    let response = await authAPI.logIn(formData.email, formData.password, formData.rememberMe)
+    if (!response.data.resultCode) {
+        dispatch(getAuthUserData())
+    } else {
+        let message = (response.data.messages.length > 0) ? response.data.messages[0] : 'Common error';
+        dispatch(stopSubmit('loginForm', {_error: message}));
+    }
 
-            })
-            .catch((e) => {console.log(e)})
-    }
 }
-export const logout = () => {
-    return (dispatch) => {
-        authAPI.logOut()
-            .then(response => {
-                if(!response.data.resultCode){
-                    dispatch(deleteAuthUserData())
-                }
-            })
-            .catch((e) => {console.log(e)})
+export const logout = () => async (dispatch) => {
+    let response = authAPI.logOut()
+
+    if (!response.resultCode) {
+        dispatch(deleteAuthUserData())
     }
+
 }
 
 

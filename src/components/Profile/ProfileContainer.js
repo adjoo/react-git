@@ -24,21 +24,22 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        return (<Profile myUserId={this.props.myUserId} status={this.props.status}
+        return (<Profile authorizedUserId={this.props.authorizedUserId} status={this.props.status}
                          updateUserStatus={this.props.updateUserStatus}
                          profile={this.props.profile}
             />
         )
     }
-
 }
 
 
-let mapStateToProps = (state) => ({
-    authorizedUserId: state.auth.userId,
-    profile: state.profilePage.profile,
-    status: state.profilePage.profileStatus,
-})
+let mapStateToProps = (state) => {
+    return ({
+        authorizedUserId: state.auth.userId,
+        profile: state.profilePage.profile,
+        status: state.profilePage.profileStatus,
+    })
+}
 
 export default compose(
     connect(mapStateToProps, {getProfile, getUserStatus, updateUserStatus,}),

@@ -25,22 +25,3 @@
 .userItem_main {
     flex-grow: 1;
 }
-.pagination {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-.pagination span {
-    margin-inline: .2rem;
-    width: 3ch;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    padding: .1rem;
-    outline: 1px solid #30393e
-  }
-.active {
-    font-weight: bold;
-    cursor: default;
-    pointer-events: none;
-}

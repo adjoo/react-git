@@ -16,24 +16,11 @@ export const usersAPI = {
 
     getUsers(currentPage = 1, pageSize = 10) {
         return apiRequest.get(`/users/?count=${pageSize}&page=${currentPage}`)
-            .catch((e) => {
-                console.log(e)
-            })
             .then(response => response.data);
     },
-    toggleFollowing(userId, newFollowingStatus = false) {
-        if (newFollowingStatus) {
-            return apiRequest.delete(`/follow/${userId}`)
-                .catch((e) => {
-                    console.log(e)
-                })
-        } else {
-            return apiRequest.post(`/follow/${userId}`)
-                .catch((e) => {
-                    console.log(e)
-                })
-        }
-    },
+    follow(userId){
+        return apiRequest.post(`/follow/${userId}`)},
+    unfollow(userId){return apiRequest.delete(`/follow/${userId}`)},
     getProfile(userId) {
         return profileAPI.getProfile(userId)
     }
@@ -42,21 +29,15 @@ export const usersAPI = {
 
 export const profileAPI = {
     getProfile(userId) {
-        return apiRequest.get(`/profile/${userId}`).catch((e) => {
-            console.log(e)
-        })
+        return apiRequest.get(`/profile/${userId}`)
     },
     getStatus(userId) {
         userId = userId || '';
-        return apiRequest.get(`/profile/status/${userId}`).catch((e) => {
-            console.log(e)
-        })
+        return apiRequest.get(`/profile/status/${userId}`)
     },
     updateStatus(status) {
         status = status || '';
-        return apiRequest.put(`/profile/status`, {status: status}).catch((e) => {
-            console.log(e)
-        })
+        return apiRequest.put(`/profile/status`, {status: status})
     }
 }
 
@@ -65,23 +46,14 @@ export const authAPI = {
     getMe() {
         return apiRequest
             .get("/auth/me")
-            .catch((e) => {
-                console.log(e)
-            })
     },
     logIn(email, password, rememberMe = false){
         return apiRequest
             .post("/auth/login",{email, password, rememberMe })
-            .catch((e) => {
-                console.log(e)
-            })
     },
     logOut(){
         return apiRequest
             .delete("/auth/login")
-            .catch((e) => {
-                console.log(e)
-            })
     },
 }
 

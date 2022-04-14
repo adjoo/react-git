@@ -2,11 +2,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {
-    getUsers, setCurrentPage, toggleUserFollowing,
+    follow,
+    requestUsers, setCurrentPage, unfollow,
 } from '../../redux/users-reducer';
 import Users from './Users';
 import Preloader from "../common/Preloader";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getPageSize,
+    getUsers,
+    getTotalUsersCount
+} from "../../redux/users-selectors";
 
 
 class UsersContainer extends React.Component {
@@ -17,17 +25,20 @@ class UsersContainer extends React.Component {
                                                            currentPage={this.props.currentPage}
                                                            followingInProgress={this.props.followingInProgress}
                                                            users={this.props.users}
-                                                           toggleUserFollowing={this.props.toggleUserFollowing}
+                                                           follow={this.props.follow}
+                                                           unfollow={this.props.unfollow}
                                                            pageChanged={this.onPageChanged}/>
             }
         </>
     }
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        let {currentPage, pageSize} = this.props;
+        this.props.requestUsers(currentPage, pageSize);
     }
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        let {pageSize} = this.props;
+        this.props.requestUsers(pageNumber, pageSize);
     }
 
     componentDidUpdate() {
@@ -36,16 +47,17 @@ class UsersContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
+
     return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        followingInProgress: state.usersPage.followingInProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        followingInProgress: getFollowingInProgress(state),
     }
 }
 let actionCreators = {
-    setCurrentPage, getUsers, toggleUserFollowing
+    setCurrentPage, requestUsers, follow, unfollow
 }
 
 export default compose(
