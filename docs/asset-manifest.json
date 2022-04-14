@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-git/static/css/main.75ec496b.css",
+    "main.js": "/react-git/static/js/main.99f47400.js",
+    "static/media/user.png": "/react-git/static/media/user.c1edb9da178359ab4d08.png",
+    "static/media/loader.svg": "/react-git/static/media/loader.ef84d734f462256055b08ac487bbe216.svg",
+    "index.html": "/react-git/index.html",
+    "main.75ec496b.css.map": "/react-git/static/css/main.75ec496b.css.map",
+    "main.99f47400.js.map": "/react-git/static/js/main.99f47400.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.75ec496b.css",
+    "static/js/main.99f47400.js"
+  ]
+}
