@@ -38,6 +38,13 @@ export const profileAPI = {
     updateStatus(status) {
         status = status || '';
         return apiRequest.put(`/profile/status`, {status: status})
+    },
+    savePhoto(file) {
+        let formData = new FormData();
+        formData.append('image', file)
+        return apiRequest.put(`/profile/photo`, formData,{headers: {
+            "Content-Type": 'multipart/form-data'
+            }})
     }
 }
 

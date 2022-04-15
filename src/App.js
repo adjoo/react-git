@@ -19,6 +19,7 @@ const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileCo
 
 
 class App extends React.Component {
+
     componentDidMount() {
         this.props.initializeApp()
     }
@@ -33,7 +34,7 @@ class App extends React.Component {
                     <Route path='/' component={Navbar} exact/>
                     <Route path='/dialogs' render={withSuspense(DialogsContainer)} />
                     <Route path='/profile' exact render={withSuspense(ProfileContainer)} />
-                    <Route path='/profile/:userId' render={withSuspense(ProfileContainer)} />
+                    <Route path='/profile/:userId'  render={withSuspense(ProfileContainer)} />
                     <Route path='/news' component={News}/>
                     <Route path='/users' component={UsersContainer}/>
                     <Route path='/login' render={withSuspense(Login)} />

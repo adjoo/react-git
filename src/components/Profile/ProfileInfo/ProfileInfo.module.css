@@ -1,9 +1,22 @@
-.profile__wallpaper{
-    height: 5em;
+.profileWallpaper{
+    height: 100px;
+    margin-bottom: .2rem;
+    display: flex;
+    align-items: center;
 }
-.profile__wallpaper img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.profileWallpaper button{
+    display: block;
 }
-
+.mainPhoto{
+    display: block;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+.profileOptions {
+    display: flex;
+    column-gap: 3ch;
+    row-gap: 1ch;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+}
