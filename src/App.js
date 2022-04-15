@@ -53,11 +53,11 @@ let AppContainer = compose(
     connect(mapStateToProps, {initializeApp}))(App);
 
 let SamuraiApp = (props) => {
-    return <BrowserRouter >
+    return <HashRouter >
         <Provider store={store}>
             <AppContainer/>
         </Provider>
-    </BrowserRouter>
+    </HashRouter>
 }
 
 

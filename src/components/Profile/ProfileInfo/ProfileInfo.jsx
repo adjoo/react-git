@@ -13,7 +13,7 @@ const ProfileInfo = ({profile,status,authorizedUserId,updateUserStatus,...props}
             <ProfileStatusWithHooks authorizedUserId={authorizedUserId} profile={profile} status={status}
                            updateUserStatus={updateUserStatus}/>
             <div className={style.profile__wallpaper}>
-                <img src={profile.photos.large} alt="alt"/>
+                <img src={profile.photos.large } alt="alt"/>
             </div>
         </div>
     )
