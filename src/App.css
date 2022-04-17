@@ -22,3 +22,15 @@
 a{
     text-decoration: none;
 }
+.globalErrorMessage {
+    position: fixed;
+    max-width: 30ch;
+    padding: 1rem 2rem;
+    right: 5vmin;
+    bottom: 5vmin;
+    background-color: rgba(188, 143, 143, .5);
+    backdrop-filter: blur(2px);
+    border-radius: 2rem;
+    box-shadow: 1px 1px 12px -4px red, 0px 0px 6px -3px black;
+    text-shadow: 0 0 8px rgba(188, 143, 143);
+}

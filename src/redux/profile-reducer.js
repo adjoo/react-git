@@ -1,4 +1,5 @@
 import {profileAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const DELETE_POST = 'DELETE-POST';
@@ -70,25 +71,41 @@ export const getProfile = (profileId) => async (dispatch) => {
 }
 export const getUserStatus = (profileId) => async (dispatch) => {
     let response = await profileAPI.getStatus(profileId)
-
     if (!response.resultCode) {
         dispatch(setStatus(response.data))
     }
 
 }
 export const updateUserStatus = (status) => async (dispatch) => {
-    let response = await profileAPI.updateStatus(status)
-    if (!response.data.resultCode) {
-        dispatch(setStatus(status))
-
+    try {
+        let response = await profileAPI.updateStatus(status)
+        if (!response.data.resultCode) {dispatch(setStatus(status))}
+    } catch(error) {
+        throw new Error(error)
     }
+
 }
 export const savePhoto = (file) => async (dispatch) => {
     let response = await profileAPI.savePhoto(file)
+    debugger
     if (!response.data.resultCode) {
         //нужно обновить фото
         debugger
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
+export const setProfile = (profile) => async (dispatch, getState) => {
+    const userId = getState().auth.userId
+    let response = await profileAPI.setProfile(profile)
+    if (!response.data.resultCode) {
+        dispatch(getProfile(userId))
+    } else {
+        dispatch(stopSubmit('editProfile', {"contacts": {"facebook":  response.data.messages[0]}}))
+        return Promise.reject(response.data.messages[0]);
+    }
+}
+
+
+
+
 export default profileReducer

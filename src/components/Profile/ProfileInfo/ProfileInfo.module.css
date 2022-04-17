@@ -4,10 +4,18 @@
     display: flex;
     align-items: center;
 }
-.profileWallpaper button{
+.profileWallpaper input{
     display: block;
+    margin: 1rem;
 }
 .mainPhoto{
+    display: block;
+    border-radius: 1rem;
+    overflow: hidden;
+    position: relative;
+    border: 2px solid #30393e;
+}
+.mainPhoto img{
     display: block;
     max-width: 100px;
     max-height: 100px;
@@ -15,8 +23,22 @@
 }
 .profileOptions {
     display: flex;
-    column-gap: 3ch;
-    row-gap: 1ch;
+    gap: 1rem;
     flex-wrap: wrap;
+    align-items: flex-start;
     margin: 1rem 0;
 }
+.profileOptions > div {
+    flex: 1 0 22ch
+}
+.profileInfoItem{
+    padding: .5rem;
+    border-radius: 1rem;
+    box-shadow: 0 .1rem .6rem -.3rem black inset;
+}
+.profileInfoItem b{white-space: nowrap;}
+
+.profileFormButton{
+
+}
+.profileFormButton button{}

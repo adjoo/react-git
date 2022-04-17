@@ -1,6 +1,25 @@
+.formControl {
+    max-width: 100%;
+}
+.formControl input,
+.formControl textarea{
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #30393e;
+    border-radius: .5rem;
+    padding: .1rem .5rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    line-height: 1.2rem;
 
+}
+.formControl textarea{
+    height: 1.6rem;
+    max-height: 4.8rem;
+}
 .formControl.error input,
 .formControl.error textarea {
+    max-width: 100%;
     border-color: darkred;
     outline: 1px solid darkred;
     outline-offset: 2px;

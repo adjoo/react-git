@@ -13,14 +13,13 @@ const apiRequest = axios.create({
 })
 
 export const usersAPI = {
-
     getUsers(currentPage = 1, pageSize = 10) {
         return apiRequest.get(`/users/?count=${pageSize}&page=${currentPage}`)
             .then(response => response.data);
     },
     follow(userId){
         return apiRequest.post(`/follow/${userId}`)},
-    unfollow(userId){return apiRequest.delete(`/follow/${userId}`)},
+    unFollow(userId){return apiRequest.delete(`/follow/${userId}`)},
     getProfile(userId) {
         return profileAPI.getProfile(userId)
     }
@@ -45,7 +44,10 @@ export const profileAPI = {
         return apiRequest.put(`/profile/photo`, formData,{headers: {
             "Content-Type": 'multipart/form-data'
             }})
-    }
+    },
+    setProfile(profile) {
+        return apiRequest.put(`/profile`,profile)
+    },
 }
 
 
@@ -54,16 +56,22 @@ export const authAPI = {
         return apiRequest
             .get("/auth/me")
     },
-    logIn(email, password, rememberMe = false){
+    logIn(email, password, rememberMe = false,captcha = null){
         return apiRequest
-            .post("/auth/login",{email, password, rememberMe })
+            .post("/auth/login",{email, password, rememberMe,captcha })
     },
     logOut(){
         return apiRequest
             .delete("/auth/login")
     },
 }
+export const securityApi = {
+    getCaptchaUrl(){
+        return apiRequest
+            .get("/security/get-captcha-url")
 
+    },
+}
 
 
 

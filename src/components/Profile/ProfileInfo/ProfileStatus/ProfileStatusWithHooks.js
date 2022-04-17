@@ -2,7 +2,9 @@ import React, {useEffect, useState} from "react";
 import s from "./ProfileStatus.module.css";
 
 const ProfileStatusWithHooks = (props) => {
+
     let [editMode, setEditMode] = useState(false);
+
     let [status, setStatus] = useState(props.status);
 
     useEffect(() => {
@@ -15,6 +17,7 @@ const ProfileStatusWithHooks = (props) => {
     const deactivateEditMode = () => {
         setEditMode(false)
         props.updateUserStatus(status)
+        setStatus(props.status) // after calling thunk and before updating props
     };
     const onStatusChange = (e) => {
         setStatus(e.currentTarget.value)
