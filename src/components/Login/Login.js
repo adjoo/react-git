@@ -11,7 +11,7 @@ import style from "./../common/FormsControls/FormsControls.module.css";
 const Login = (props) => {
 
     const onSubmit = (formData) => {
-        props.login(formData);
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
     }
     if (props.isAuth) return <Redirect to={'/profile'}/>
     return (<div>
