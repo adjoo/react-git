@@ -5,18 +5,22 @@ import usersPage from "./users-reducer";
 import sidebar from "./sidebar-reducer";
 import authReducer from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
-import { reducer as formReducer } from "redux-form";
+import {reducer as formReducer} from "redux-form";
 import appReducer from "./app-reducer";
 
 
 /*with chrome redux*/
 const middleware = [thunkMiddleware,]
-let reducers = combineReducers({
-    profilePage, dialogsPage, sidebar, usersPage, auth:authReducer, form: formReducer, app: appReducer
+let rootReducer = combineReducers({
+    profilePage, dialogsPage, sidebar, usersPage, auth: authReducer, form: formReducer, app: appReducer
 });
 
+export type AppStateType =ReturnType<typeof rootReducer>
+
+
+// @ts-ignore
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, /* preloadedState, */ composeEnhancers(applyMiddleware(...middleware)));
+const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(...middleware)));
 /*/
 
 /* without Chrome redux

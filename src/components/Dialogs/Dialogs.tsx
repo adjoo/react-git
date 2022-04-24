@@ -3,10 +3,16 @@ import s from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
 import SendMessageForm from "./SendMessageForm";
+import {DialogsItemType, MessagesItemType} from "../../types/types";
 
 
-const Dialogs = (props) => {
-
+type PropsType = {
+    dialogs:  Array<DialogsItemType>
+    messages: Array<MessagesItemType>
+    newMessageText: string
+    sendMessage: (newMessage: string)=>void
+}
+const Dialogs : React.FC<PropsType> = (props) => {
 
     let dialogs = props.dialogs.map((el) => {
         return <DialogItem name={el.name} path={`dialogs/${el.id}`}/>
@@ -15,7 +21,7 @@ const Dialogs = (props) => {
         return <Message message={el.message}/>
     })
 
-    let addNewMessage = (values) => {
+    let addNewMessage = (values: any) => {
         props.sendMessage(values.newMessageBody)
     }
 

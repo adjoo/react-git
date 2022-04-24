@@ -1,7 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import s from "./ProfileStatus.module.css";
 
-const ProfileStatusWithHooks = (props) => {
+type PropsType = {
+    status: string
+    updateUserStatus: (newStatus: string) => void
+}
+
+type StateType= {
+
+}
+
+const ProfileStatusWithHooks : React.FC<PropsType> = (props) => {
 
     let [editMode, setEditMode] = useState(false);
 
@@ -19,7 +28,7 @@ const ProfileStatusWithHooks = (props) => {
         props.updateUserStatus(status)
         setStatus(props.status) // after calling thunk and before updating props
     };
-    const onStatusChange = (e) => {
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>) => {
         setStatus(e.currentTarget.value)
     }
 

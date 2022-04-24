@@ -136,7 +136,6 @@ export const requestUsers = (requestPage: number, pageSize: number): any => asyn
     dispatch(toggleFetching(false));
 }
 
-
 const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: any, actionCreator: any) => {
     dispatch(toggleFollowingProgress(true, userId));
     let response = await apiMethod(userId)
@@ -146,16 +145,17 @@ const followUnfollowFlow = async (dispatch: any, userId: number, apiMethod: any,
     dispatch(toggleFollowingProgress(false, userId));
 
 }
+
 export const follow = (userId: number) => async (dispatch: any) => {
     let apiMethod = usersAPI.follow.bind(usersAPI)
     await followUnfollowFlow(dispatch, userId, apiMethod, followSuccess)
 
 }
+
 export const unfollow = (userId: number) => async (dispatch: any) => {
     let apiMethod = usersAPI.unFollow.bind(usersAPI)
     await followUnfollowFlow(dispatch, userId, apiMethod, unfollowSuccess)
 
 }
-
 
 export default usersReducer

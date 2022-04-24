@@ -45,7 +45,7 @@ class App extends React.Component {
                         <Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
                         <Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
                         <Route path='/news' component={News}/>
-                        <Route path='/users' component={UsersContainer}/>
+                        <Route path='/users' render={()=><UsersContainer pageTitle={'page title'}/>}/>
                         <Route path='/login' render={withSuspense(Login)}/>
                         <Route path='/' exact render={() => <Redirect to={'/profile'}/>}/>
                         <Route path='*' render={() => <div>404 not found</div>}/>

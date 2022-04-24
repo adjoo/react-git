@@ -1,13 +1,36 @@
 import React from 'react'
 import Profile from "./Profile";
-import {withRouter} from "react-router-dom";
+import {withRouter, RouteComponentProps } from "react-router-dom";
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {getProfile, getUserStatus, savePhoto, setProfile, updateUserStatus} from "../../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {AppStateType} from "../../redux/redux-store";
+import {ProfileType} from "../../types/types";
 
+type MapStatePropsType = {
+    authorizedUserId: number | null
+    profile: ProfileType | null
+    status: string
+}
+type MapDispatchPropsType = {
+    getProfile: (profileId: number) => any
+    getUserStatus: (profileId: number) => any
+    updateUserStatus: (status: string) => any
+    savePhoto: (file: any) => any
+    setProfile: (profile: ProfileType) => any
+}
 
-class ProfileContainer extends React.Component {
+type OwnPropsType = {}
+
+type RouterPropsType = {
+    userId: number
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType & RouteComponentProps<RouterPropsType>
+
+class ProfileContainer extends React.Component<PropsType> {
+
     refreshProfile() {
         let userId = this.props.match.params.userId
 
@@ -25,7 +48,7 @@ class ProfileContainer extends React.Component {
         this.refreshProfile()
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: PropsType) {
         if (this.props.match.params.userId !== prevProps.match.params.userId) {
             this.refreshProfile()
         }
@@ -39,14 +62,14 @@ class ProfileContainer extends React.Component {
                          setProfile={this.props.setProfile}
                          updateUserStatus={this.props.updateUserStatus}
                          profile={this.props.profile}
-                         {...this.props}
+
             />
         )
     }
 }
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return ({
         authorizedUserId: state.auth.userId,
         profile: state.profilePage.profile,
@@ -54,8 +77,9 @@ let mapStateToProps = (state) => {
     })
 }
 
-export default compose(
-    connect(mapStateToProps, {getProfile, getUserStatus, updateUserStatus, savePhoto, setProfile}),
+export default compose<React.Component>(
+    connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
+    (mapStateToProps, {getProfile, getUserStatus, updateUserStatus, savePhoto, setProfile}),
     withAuthRedirect,
     withRouter,
 )(ProfileContainer)

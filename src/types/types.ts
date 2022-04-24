@@ -4,6 +4,7 @@ export type PostItem = {
     likesCount: number
 }
 export type ContactsOfProfileType = {
+    [key: string] : string
     github: string
     vk: string
     facebook: string
@@ -24,6 +25,8 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsOfProfileType
     photos: PhotosOfProfileType
+    aboutMe: string
+
 }
 
 export type UserType = {
@@ -34,3 +37,12 @@ export type UserType = {
     followed: boolean
 }
 
+
+export type DialogsItemType = {
+    id: number
+    name: string
+}
+export type MessagesItemType = {
+    id: number
+    message: string
+}

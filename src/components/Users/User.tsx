@@ -2,8 +2,16 @@ import React from 'react';
 import style from './Users.module.css';
 import userPhoto from '../../Assets/Images/user.png';
 import {NavLink} from "react-router-dom";
+import {UserType} from "../../types/types";
 
-let User = ({user, followingInProgress, follow, unfollow, ...props}) => {
+type PropsType = {
+    user: UserType,
+    followingInProgress: Array<number>
+    follow: (id: number)=>void
+    unfollow: (id: number)=>void
+}
+
+let User: React.FC<PropsType> = ({user, followingInProgress, follow, unfollow,}) => {
     return (<div key={user.id} className={style.userItem}>
             <div>
 
@@ -15,14 +23,14 @@ let User = ({user, followingInProgress, follow, unfollow, ...props}) => {
                 </div>
                 <div>
                     {user.followed &&
-                    <button disabled={followingInProgress.some(id => id === user.id) ? "disabled" : null}
+                    <button disabled={followingInProgress.some(id => id === user.id)}
                             className={style.userItem_followBtn}
                             onClick={() => {
                                 unfollow(user.id)
                             }}
                     >Unfollow</button>}
                     {!user.followed &&
-                    <button disabled={followingInProgress.some(id => id === user.id) ? "disabled" : null}
+                    <button disabled={followingInProgress.some(id => id === user.id)}
                             className={style.userItem_followBtn}
                             onClick={() => {
                                 follow(user.id)
