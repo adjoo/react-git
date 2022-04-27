@@ -44,7 +44,6 @@ type SendMessageActionType = {
     type: typeof SEND_MESSAGE
     message: string
 }
-
 export const sendMessage = (message: string): SendMessageActionType => ({type: SEND_MESSAGE, message});
 
 export default dialogsReducer

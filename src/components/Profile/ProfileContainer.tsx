@@ -14,7 +14,7 @@ type MapStatePropsType = {
     status: string
 }
 type MapDispatchPropsType = {
-    getProfile: (profileId: number) => any
+    getProfile: (profileId: number ) => any
     getUserStatus: (profileId: number) => any
     updateUserStatus: (status: string) => any
     savePhoto: (file: any) => any
@@ -32,7 +32,7 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType & Route
 class ProfileContainer extends React.Component<PropsType> {
 
     refreshProfile() {
-        let userId = this.props.match.params.userId
+        let userId : number = this.props.match.params.userId
 
         if (!userId) {
             userId = this.props.authorizedUserId
